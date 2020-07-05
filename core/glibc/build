@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+# pwd
+
+# Use lib not lib64 by default.
+sed -i 's/lib64/usr\/lib/'      sysdeps/unix/sysv/linux/x86_64/64/configure 
+sed -i 's/lib64/usr\/lib/'     sysdeps/unix/sysv/linux/x86_64/ldconfig.h
+
+mkdir -p glibc-build
+cd glibc-build
+
+../configure \
+    --prefix=/usr \
+    --bindir=/usr/bin \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib \
+    --libdir=/usr/lib \
+    --disable-werror \
+    --with-headers=/usr/include
+#    --with-headers="../include"
+	
+make
+make DESTDIR="$1" install
