@@ -24,4 +24,10 @@ enabled by default.
 ## KISS paths
 
 To avoid creating new builds of some packages, only packages with specific build instruction for glibc are available. 
-The other are reused from the KISS distribution. So be careful in your KISS paths (`/etc/profile.d/kiss_path.sh`). 
+The other are reused from the KISS distribution. So be careful in your KISS paths (`/etc/profile.d/kiss_path.sh`). It must 
+be
+```
+    export KISS_PATH=/var/db/kiss/kiss-glibc-repo/core:/var/db/kiss/repo/core:/var/db/kiss/repo/extra:/var/db/kiss/repo/xorg:/var/db/kiss/community/community
+```
+
+The repository `kiss-glibc-repo/core` must be before `repo/core`.
